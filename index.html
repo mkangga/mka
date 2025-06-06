@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Selection</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        /* Custom font for the page */
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        /* Style for the PIN input dots */
+        .pin-input {
+            -webkit-text-security: disc;
+            -moz-text-security: disc;
+            text-security: disc;
+        }
+    </style>
+</head>
+<body class="bg-zinc-900 text-zinc-300 flex flex-col items-center justify-center min-h-screen transition-colors duration-300">
+
+    <!-- Main Profile Selection Container -->
+    <div id="profile-selection" class="text-center">
+        <h1 class="text-4xl md:text-5xl font-light mb-12 text-white">Siapa yang menonton?</h1>
+        
+        <!-- Profiles Grid -->
+        <div class="flex flex-wrap justify-center gap-4 md:gap-8 mb-12 px-4">
+            
+            <!-- Profile 1 -->
+            <div class="profile-card flex flex-col items-center group cursor-pointer" data-profile-name="MKA">
+                <div class="w-28 h-28 md:w-36 md:h-36 rounded-md overflow-hidden bg-red-600 group-hover:border-4 group-hover:border-white transition-all duration-150">
+                    <img alt="Profile MKA" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5TN-69cQP_7ZPBTwoGAfiXNen9eB2qzGA5SDaiyQgAngYy0vERmbfwD9sv-Ug_BVmuqF_NisGm6ABb41o9HWcrRBEPa9268-AH2R3Vft__0YijwDRy-fFeqhT7ILysDSDWWi9_eDs-UWlQIiA-k8DxgTRI3RQ1icWshNPhMxLtHZc3brqlYWSTsysnY4Q6DcIm_BH8YcShOF1OwiIjCPJ0a2uJfe6is2nh9_sdlYYDkjXEOtj8xyaqUhlMwXa-IgSx5sxM78aNODo" onerror="this.onerror=null; this.src='https://placehold.co/144x144/e53e3e/ffffff?text=M';">
+                </div>
+                <p class="mt-3 text-zinc-400 group-hover:text-white transition-colors duration-150">MKA</p>
+                <span class="material-icons text-zinc-500 text-sm mt-1">lock</span>
+            </div>
+            
+            <!-- Profile 2 -->
+            <div class="profile-card flex flex-col items-center group cursor-pointer" data-profile-name="B">
+                <div class="w-28 h-28 md:w-36 md:h-36 rounded-md overflow-hidden bg-blue-500 group-hover:border-4 group-hover:border-white transition-all duration-150 flex items-center justify-center">
+                    <span class="material-icons text-6xl md:text-8xl text-white">sentiment_satisfied_alt</span>
+                </div>
+                <p class="mt-3 text-zinc-400 group-hover:text-white transition-colors duration-150">B</p>
+                <span class="material-icons text-zinc-500 text-sm mt-1">lock</span>
+            </div>
+
+            <!-- Profile 3 -->
+            <div class="profile-card flex flex-col items-center group cursor-pointer" data-profile-name="C">
+                <div class="w-28 h-28 md:w-36 md:h-36 rounded-md overflow-hidden bg-yellow-400 group-hover:border-4 group-hover:border-white transition-all duration-150 flex items-center justify-center">
+                    <span class="material-icons text-6xl md:text-8xl text-white">sentiment_satisfied_alt</span>
+                </div>
+                <p class="mt-3 text-zinc-400 group-hover:text-white transition-colors duration-150">C</p>
+                <span class="material-icons text-zinc-500 text-sm mt-1">lock</span>
+            </div>
+
+            <!-- Profile 4 -->
+            <div class="profile-card flex flex-col items-center group cursor-pointer" data-profile-name="D">
+                <div class="w-28 h-28 md:w-36 md:h-36 rounded-md overflow-hidden bg-rose-500 group-hover:border-4 group-hover:border-white transition-all duration-150 flex items-center justify-center">
+                    <span class="material-icons text-6xl md:text-8xl text-white">sentiment_satisfied_alt</span>
+                </div>
+                <p class="mt-3 text-zinc-400 group-hover:text-white transition-colors duration-150">D</p>
+                <span class="material-icons text-zinc-500 text-sm mt-1">lock</span>
+            </div>
+
+            <!-- Profile 5 -->
+            <div class="profile-card flex flex-col items-center group cursor-pointer" data-profile-name="E">
+                <div class="w-28 h-28 md:w-36 md:h-36 rounded-md overflow-hidden bg-teal-600 group-hover:border-4 group-hover:border-white transition-all duration-150 flex items-center justify-center">
+                    <span class="material-icons text-6xl md:text-8xl text-white">sentiment_satisfied_alt</span>
+                </div>
+                <p class="mt-3 text-zinc-400 group-hover:text-white transition-colors duration-150">E</p>
+                <span class="material-icons text-zinc-500 text-sm mt-1">lock</span>
+            </div>
+
+        </div>
+
+        <button class="border border-zinc-500 text-zinc-500 px-8 py-3 hover:border-white hover:text-white transition-colors duration-150 text-lg tracking-wider">
+            Kelola Profil
+        </button>
+    </div>
+
+    <!-- PIN Entry Modal -->
+    <div id="pin-modal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+        <div class="bg-zinc-800 text-white p-8 rounded-lg shadow-xl text-center w-11/12 max-w-sm">
+            <h2 class="text-2xl mb-2">Profil Terkunci</h2>
+            <p class="text-zinc-400 mb-6">Masukkan PIN untuk membuka profil <span id="pin-profile-name" class="font-bold"></span>.</p>
+            <form id="pin-form">
+                <input 
+                    type="password" 
+                    id="pin-input" 
+                    class="pin-input tracking-[1.5em] text-center w-full bg-zinc-700 border border-zinc-600 rounded-md p-3 text-xl mb-4 focus:outline-none focus:ring-2 focus:ring-white" 
+                    maxlength="4"
+                    autocomplete="off"
+                    pattern="\d*"
+                    inputmode="numeric"
+                >
+                <p id="pin-error" class="text-red-500 mb-4 h-5"></p>
+                <div class="flex gap-4">
+                     <button type="button" id="cancel-pin" class="w-full bg-zinc-600 hover:bg-zinc-500 text-white py-3 rounded-md transition-colors">Batal</button>
+                    <button type="submit" class="w-full bg-white hover:bg-zinc-200 text-black font-bold py-3 rounded-md transition-colors">Masuk</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        // --- DOM Element Selection ---
+        const profileCards = document.querySelectorAll('.profile-card');
+        const pinModal = document.getElementById('pin-modal');
+        const pinForm = document.getElementById('pin-form');
+        const pinInput = document.getElementById('pin-input');
+        const pinError = document.getElementById('pin-error');
+        const cancelPinButton = document.getElementById('cancel-pin');
+        const profileSelectionContainer = document.getElementById('profile-selection');
+        const pinProfileName = document.getElementById('pin-profile-name');
+
+        // The correct PIN
+        const CORRECT_PIN = '1234';
+        let currentProfileName = '';
+
+        // --- Event Listeners ---
+
+        // Add a click event to each profile card
+        profileCards.forEach(card => {
+            card.addEventListener('click', () => {
+                currentProfileName = card.dataset.profileName; // Get profile name from data attribute
+                showPinModal(currentProfileName);
+            });
+        });
+
+        // Handle the PIN form submission
+        pinForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevent page reload
+            checkPin();
+        });
+
+        // Handle the cancel button click
+        cancelPinButton.addEventListener('click', () => {
+            hidePinModal();
+        });
+
+        // Also hide modal if user clicks outside the content box
+        pinModal.addEventListener('click', (e) => {
+            if (e.target === pinModal) {
+                hidePinModal();
+            }
+        });
+        
+        // --- Functions ---
+
+        /**
+         * Shows the PIN entry modal and blurs the background.
+         * @param {string} profileName - The name of the profile being accessed.
+         */
+        function showPinModal(profileName) {
+            pinProfileName.textContent = profileName;
+            pinModal.classList.remove('hidden');
+            profileSelectionContainer.classList.add('blur-sm'); // Add blur to background
+            pinInput.focus(); // Automatically focus the input field
+        }
+
+        /**
+         * Hides the PIN entry modal and resets its state.
+         */
+        function hidePinModal() {
+            pinModal.classList.add('hidden');
+            profileSelectionContainer.classList.remove('blur-sm'); // Remove blur
+            pinInput.value = ''; // Clear input
+            pinError.textContent = ''; // Clear error message
+        }
+
+        /**
+         * Checks if the entered PIN is correct.
+         */
+        function checkPin() {
+            const enteredPin = pinInput.value;
+            if (enteredPin === CORRECT_PIN) {
+                // If correct, show a success message and redirect
+                pinError.textContent = '';
+                document.body.innerHTML = `
+                    <div class="flex flex-col items-center justify-center min-h-screen text-white">
+                        <h1 class="text-4xl">Selamat Datang, ${currentProfileName}!</h1>
+                        <p class="text-zinc-400 mt-2">Anda akan dialihkan...</p>
+                    </div>
+                `;
+                // Redirect to the specified website after a short delay
+                setTimeout(() => {
+                    window.location.href = 'https://mka354.blogspot.com';
+                }, 1500);
+
+            } else {
+                // If incorrect, show an error message
+                pinError.textContent = 'Pin anda salah.';
+                // Vibrate the modal for feedback
+                pinModal.firstElementChild.classList.add('animate-head-shake');
+                // Clear the input
+                pinInput.value = '';
+                // Remove animation after it finishes
+                setTimeout(() => {
+                    pinModal.firstElementChild.classList.remove('animate-head-shake');
+                }, 500);
+            }
+        }
+
+        // Add CSS for the head-shake animation
+        const styleSheet = document.createElement("style");
+        styleSheet.type = "text/css";
+        styleSheet.innerText = `
+            @keyframes head-shake {
+                0% { transform: translateX(0); }
+                12.5% { transform: translateX(-6px) rotateY(-5deg); }
+                37.5% { transform: translateX(5px) rotateY(4deg); }
+                62.5% { transform: translateX(-3px) rotateY(-2deg); }
+                87.5% { transform: translateX(2px) rotateY(1deg); }
+                100% { transform: translateX(0); }
+            }
+            .animate-head-shake {
+                animation: head-shake 0.5s ease-in-out;
+            }
+        `;
+        document.head.appendChild(styleSheet);
+
+    </script>
+</body>
+</html>
